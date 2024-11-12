@@ -1,3 +1,16 @@
+https://sql-academy.org/
+==================
+ОСНОВЫ
+
 SELECT (5 * 2 - 6) / 2 AS Result;
-SELECT * FROM FamilyMembers WHERE birthday > '1970-12-30'
-"19701230" 19701230
+SELECT YEAR("2022-06-16") AS year; #Возвращает только год
+SELECT * FROM FamilyMembers WHERE birthday > '1970-12-30'  #можно "19701230" или 19701230
+
+SELECT UPPER("Hello world") AS upper_string;    #Результат большими буквами
+SELECT LOWER('SQL Academy') AS lower_string;    #Результат маленькими буквами
+SELECT INSTR('sql-academy', 'academy') AS idx;  #Результат = 5(с какого символа начинается 'academy')
+
+SELECT LENGTH('sql-academy') AS str_length;     #Результат = 11(длина строки) Ниже пример.
+    SELECT member_name,
+	    LENGTH(member_name) AS fullname_length
+    FROM FamilyMembers;
