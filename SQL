@@ -1,7 +1,7 @@
 https://sql-academy.org/
 ==================
-ОСНОВЫ
-
+#ОСНОВЫ
+##Литералы
 SELECT (5 * 2 - 6) / 2 AS Result;
 SELECT YEAR("2022-06-16") AS year; #Возвращает только год
 SELECT * FROM FamilyMembers WHERE birthday > '1970-12-30'  #можно "19701230" или 19701230
@@ -9,8 +9,17 @@ SELECT * FROM FamilyMembers WHERE birthday > '1970-12-30'  #можно "19701230
 SELECT UPPER("Hello world") AS upper_string;    #Результат большими буквами
 SELECT LOWER('SQL Academy') AS lower_string;    #Результат маленькими буквами
 SELECT INSTR('sql-academy', 'academy') AS idx;  #Результат = 5(с какого символа начинается 'academy')
+SELECT member_name, YEAR(birthday) AS year_of_birth from FamilyMembers #Имя и год рождения
 
-SELECT LENGTH('sql-academy') AS str_length;     #Результат = 11(длина строки) Ниже пример.
+SELECT LENGTH('sql-academy') AS str_length;     #Результат = 11(длина строки) Ниже пример
     SELECT member_name,
 	    LENGTH(member_name) AS fullname_length
     FROM FamilyMembers;
+
+SELECT member_name,				#Полное имя и длина фамилии
+	LENGTH(member_name) - INSTR(member_name, ' ') AS lastname_length
+FROM FamilyMembers;
+
+##Исключение дубликатов DISTINCT
+SELECT [DISTINCT] поля_таблиц FROM наименование_таблицы;
+SELECT DISTINCT first_name, last_name FROM User; #Список без повторяющихся имен
