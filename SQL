@@ -110,11 +110,43 @@ p1|p2|p3	Соответствует любому из паттернов p1 ил
 SELECT id, address from Rooms where address REGEXP 'Avenue'
 SELECT name, email FROM Users WHERE email REGEXP '@(outlook.com|live.com)$'
 
-
+---------------------
 ##Сортировка, оператор ORDER BY / Группировка по нескольким столбцам
 SELECT поля_таблиц FROM наим_табл WHERE ... ORDER BY столбец_1 [ASC | DESC][, столбец_n [ASC | DESC]]
 ASC - сортировка по возрастанию (по умолчанию)
 DESC - сортировка по убыванию
+Задачка:
+SELECT * from FamilyMembers where member_name like '%Quincey'order by status ASC, member_name ASC
 
+##Группировка, оператор GROUP BY
+SELECT [литералы, агрегатные_функции, поля_группировки] FROM имя_таблицы GROUP BY поля_группировки;
 
+Пример:
+	SELECT home_type, AVG(price) as avg_price FROM Rooms GROUP BY home_type
+Результат:	
+	Private room	89.4286
+	Entire home/apt	148.6667
+	Shared room	40
+Описание: Запрос сначала разбивает все записи из таблицы Rooms на 3 группы, опираясь на поле home_type. 
+Далее, для каждой группы суммирует все значения, взятые из поля price
 
+	##Агрегатные функции
+		SUM(поле_таблицы)	Возвращает сумму значений
+		AVG(поле_таблицы)	Возвращает среднее значение
+		COUNT(поле_таблицы)	Возвращает количество записей
+		MIN(поле_таблицы)	Возвращает минимальное значение
+		MAX(поле_таблицы)	Возвращает максимальное значение
+	Пример:
+		Для каждого жилого помещения найдём самую позднюю дату выезда (поле end_date)
+		SELECT room_id, MAX(end_date) AS last_end_date FROM Reservations GROUP BY room_id
+
+Задачка:
+SELECT class, COUNT(student) AS count FROM Student_in_class GROUP BY class ORDER BY count DESC;
+SELECT status, min(birthday) AS birthday from FamilyMembers GROUP BY status #найти самого старшего в группе
+
+SELECT plane, AVG(TIMESTAMPDIFF(SECOND, time_out, time_in)) AS time FROM Trip GROUP BY plane;
+	Итог:
+		plane	time
+		Boeing	32965
+		TU-154	23040
+		IL-86	7020
