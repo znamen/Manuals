@@ -1,4 +1,5 @@
 https://sql-academy.org/
+Записи по мере прохождения курса.
 ==================
 #ОСНОВЫ
 ##Литералы
@@ -81,3 +82,36 @@ SELECT job_id FROM Jobs WHERE progress LIKE '3!%' ESCAPE '!'; #только гд
 Пример(всех с фамилией quincey):
 	SELECT member_name 
 	FROM FamilyMembers where member_name like '%Quincey'
+
+##Оператор REGEXP/ Регулярные выражения которые трудно реализовать с помощью оператора LIKE.
+... WHERE table_field REGEXP 'pattern';
+*	0 или более экземпляров предшествующей строки
++	1 или более экземпляров предшествующих строк
+.	Любой одиночный символ
+?	0 или 1 экземпляр предшествующей строки
+^	Соответствует началу строки
+$	Соответствует окончанию строки
+[abc]	Любой символ, указанный в квадратных скобках
+[^abc]	Любой символ, не указанный в квадратных скобках
+[A-Z], [А-Я]	Соответствует любой заглавной букве латинского и кириллического алфавита соответственно
+[a-z], [а-я]	Соответствует любой строчной букве латинского и кириллического алфавита соответственно
+[0-9]	Соответствует любой цифре
+p1|p2|p3	Соответствует любому из паттернов p1 или p2 или p3
+{n}	n экземпляров предыдущей строки
+{m,n}	от m до n экземпляров предыдущей строки
+Пример:
+	SELECT * FROM Users WHERE name REGEXP '^John'				#все, чьи имена начинаются на «John»
+	SELECT * FROM Users WHERE phone_number REGEXP '^[^28]*$' 		#номер не содержит цифр «2» и «8»
+	SELECT name, phone_number FROM Users WHERE phone_number REGEXP '^\\+7'	#номер начинается на «+7»
+	SELECT * FROM Users WHERE email REGEXP '@(outlook.com|icloud.com)$' 	#Найдём всех, чей адрес 
+										электронной почты oканчивается 
+										на «@outlook.com» или на «@icloud.com»:
+Задачка:
+SELECT id, address from Rooms where address REGEXP 'Avenue'
+SELECT name, email FROM Users WHERE email REGEXP '@(outlook.com|live.com)$'
+
+
+##Сортировка, оператор ORDER BY / Группировка по нескольким столбцам
+SELECT поля_таблиц FROM наим_табл WHERE ... ORDER BY столбец_1 [ASC | DESC][, столбец_n [ASC | DESC]]
+ASC - сортировка по возрастанию (по умолчанию)
+DESC - сортировка по убыванию
