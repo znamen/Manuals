@@ -110,7 +110,9 @@ p1|p2|p3	Соответствует любому из паттернов p1 ил
 SELECT id, address from Rooms where address REGEXP 'Avenue'
 SELECT name, email FROM Users WHERE email REGEXP '@(outlook.com|live.com)$'
 
+
 ---------------------
+
 ##Сортировка, оператор ORDER BY / Группировка по нескольким столбцам
 SELECT поля_таблиц FROM наим_табл WHERE ... ORDER BY столбец_1 [ASC | DESC][, столбец_n [ASC | DESC]]
 ASC - сортировка по возрастанию (по умолчанию)
@@ -169,3 +171,28 @@ SELECT home_type, AVG(price) as avg_price FROM Rooms GROUP BY home_type HAVING a
 	представителем данного типа. В итоговую выборку включите только те типы жилья, количество 
 	которых в таблице Rooms больше или равно 2.
 SELECT home_type, max(price) - min(price) AS difference from Rooms GROUP BY home_type HAVING COUNT(*) >= 2;
+
+
+---------------------
+
+Многотабличные запросы, JOIN
+SELECT поля_таблиц
+FROM таблица_1
+[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN таблица_2
+    ON условие_соединения
+[[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN таблица_n
+    ON условие_соединения]
+
+Пример:
+	SELECT family_member, member_name, amount * unit_price AS price FROM Payments
+	INNER JOIN FamilyMembers ON Payments.family_member = FamilyMembers.member_id
+Итог:
+family_member	member_name	price
+	1	Headley Quincey	2000
+	2	Flavia Quincey	2100
+	3	Andie Quincey	100
+
+Вывести все столбцы из нескольких таблиц(* после названия таблицы в селекте):
+	SELECT Payments.*, FamilyMembers.* FROM Payments INNER JOIN FamilyMembers 
+	ON Payments.family_member = FamilyMembers.member_id
+
