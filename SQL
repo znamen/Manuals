@@ -196,3 +196,13 @@ family_member	member_name	price
 	SELECT Payments.*, FamilyMembers.* FROM Payments INNER JOIN FamilyMembers 
 	ON Payments.family_member = FamilyMembers.member_id
 
+INNER JOIN
+Пример:
+	SELECT family_member, member_name FROM Payments INNER JOIN FamilyMembers 
+	ON Payments.family_member = FamilyMembers.member_id
+
+Или с where:
+	SELECT family_member, member_name FROM Payments, FamilyMembers
+    	WHERE Payments.family_member = FamilyMembers.member_id
+Задание:
+	SELECT name, student FROM Class, Student_in_class WHERE Class.id = Student_in_class.class
