@@ -150,3 +150,22 @@ SELECT plane, AVG(TIMESTAMPDIFF(SECOND, time_out, time_in)) AS time FROM Trip GR
 		Boeing	32965
 		TU-154	23040
 		IL-86	7020
+select room_id, avg(price) as avg_price, count(room_id) as count from reservations group by room_id
+order by count desc, avg_price desc
+
+##Оператор HAVING
+Общая структура запроса с оператором HAVING
+
+	SELECT [константы, агрегатные_функции, поля_группировки]
+	FROM имя_таблицы
+	WHERE условия_на_ограничения_строк
+	GROUP BY поля_группировки
+	HAVING условие_на_ограничение_строк_после_группировки
+	ORDER BY условие_сортировки
+Пример:
+SELECT home_type, AVG(price) as avg_price FROM Rooms GROUP BY home_type HAVING avg_price > 50
+
+Задание: Выведите типы комнат (поле home_type) и разницу между самым дорогим и самым дешевым 
+	представителем данного типа. В итоговую выборку включите только те типы жилья, количество 
+	которых в таблице Rooms больше или равно 2.
+SELECT home_type, max(price) - min(price) AS difference from Rooms GROUP BY home_type HAVING COUNT(*) >= 2;
