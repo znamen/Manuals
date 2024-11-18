@@ -206,3 +206,8 @@ INNER JOIN
     	WHERE Payments.family_member = FamilyMembers.member_id
 Задание:
 	SELECT name, student FROM Class, Student_in_class WHERE Class.id = Student_in_class.class
+
+	SELECT good_name FROM Payments INNER JOIN FamilyMembers ON Payments.family_member = FamilyMembers.member_id
+		INNER JOIN Goods ON Payments.good = Goods.good_i WHERE status in ('son')
+	SELECT room_id, AVG(rating) AS avg_score FROM Reviews INNER JOIN Reservations 
+		ON Reservations.id = Reviews.reservation_id GROUP BY room_id;
