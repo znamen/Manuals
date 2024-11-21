@@ -211,3 +211,10 @@ INNER JOIN
 		INNER JOIN Goods ON Payments.good = Goods.good_i WHERE status in ('son')
 	SELECT room_id, AVG(rating) AS avg_score FROM Reviews INNER JOIN Reservations 
 		ON Reservations.id = Reviews.reservation_id GROUP BY room_id;
+
+OUTER JOIN
+Пример(LEFT OUTER JOIN):
+	SELECT Timepair.id 'timepair.id', start_pair, end_pair,
+    	Schedule.id 'schedule.id', date, class, number_pair, teacher, subject, classroom
+	FROM Timepair LEFT JOIN Schedule ON Schedule.number_pair = Timepair.id;
+Пример:
