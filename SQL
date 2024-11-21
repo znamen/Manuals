@@ -112,7 +112,7 @@ SELECT name, email FROM Users WHERE email REGEXP '@(outlook.com|live.com)$'
 
 
 ---------------------
-
+МОДУЛЬ 2
 ##Сортировка, оператор ORDER BY / Группировка по нескольким столбцам
 SELECT поля_таблиц FROM наим_табл WHERE ... ORDER BY столбец_1 [ASC | DESC][, столбец_n [ASC | DESC]]
 ASC - сортировка по возрастанию (по умолчанию)
@@ -174,6 +174,7 @@ SELECT home_type, max(price) - min(price) AS difference from Rooms GROUP BY home
 
 
 ---------------------
+МОДУЛЬ 3
 
 Многотабличные запросы, JOIN
 SELECT поля_таблиц
@@ -217,4 +218,51 @@ OUTER JOIN
 	SELECT Timepair.id 'timepair.id', start_pair, end_pair,
     	Schedule.id 'schedule.id', date, class, number_pair, teacher, subject, classroom
 	FROM Timepair LEFT JOIN Schedule ON Schedule.number_pair = Timepair.id;
+
+SELECT поля_таблиц
+FROM левая_таблица LEFT JOIN правая_таблица
+    ON правая_таблица.ключ = левая_таблица.ключ
+WHERE правая_таблица.ключ IS NULL
+
+Задание:
+Выведите имя first_name и фамилию last_name каждого учителя из таблицы Teacher, а также 
+количество занятий, в которых он был назначен преподавателем. Если преподаватель не был назначен 
+ни на одно занятие, то выведите 0. Для вывода количества занятий используйте псевдоним amount_classes.
 Пример:
+	SELECT first_name, last_name, COUNT(Schedule.teacher) as amount_classes from teacher 
+	LEFT JOIN Schedule on Schedule.teacher = Teacher.id GROUP BY Teacher.id
+
+Ограничение выборки, оператор LIMIT
+SELECT поля_выборки
+FROM список_таблиц
+LIMIT [количество_пропущенных_записей,] количество_записей_для_вывода;
+Пример:
+id	name
+1	Don_avia
+2	Aeroflot
+3	Dale_avia
+4	air_France
+5	British_AW
+SELECT * FROM Company LIMIT 2, 3;
+Вывод: 
+id	name
+3	Dale_avia
+4	air_France
+5	British_AW
+Пример:
+SELECT ID, name FROM Company ORDER BY name ASC LIMIT 2
+Задание:
+Выведите всю информацию о пользователе из таблицы Users, кто является 
+владельцем самого дорогого жилья (таблица Rooms).
+	SELECT * FROM Users WHERE id = 
+	(SELECT owner_id FROM Rooms WHERE price = (SELECT MAX(price) FROM Rooms));
+
+Подзапросы с несколькими строками и одним столбцом
+Задание: Имена всех владельцев жилья, которые сами при этом никогда не снимали жилье
+	SELECT DISTINCT name FROM Users INNER JOIN Rooms ON Users.id = Rooms.owner_id
+	WHERE Users.id <> ALL (SELECT DISTINCT user_id FROM Reservations)
+
+Задание: Выведите названия товаров из таблицы Goods (поле good_name), которые ещё ни разу 
+не покупались ни одним из членов семьи (таблица Payments).
+	SELECT DISTINCT good_name FROM Goods 
+	WHERE good_id NOT IN (SELECT DISTINCT good FROM Payments);
