@@ -364,3 +364,68 @@ Sofya		Dmitrievna	Krauze
 Viktoriya	Nikolaevna	Ostrozhskaya
 YUrij		Empty		Krylov
 Bogdan		Romanovich	Moiseev
+
+
+
+---------------------
+МОДУЛЬ 4
+Манипулирование данными
+
+Добавление данных, оператор INSERT
+	INSERT INTO имя_таблицы [(поле_таблицы, ...)]
+	VALUES (значение_поля_таблицы, ...)
+	| SELECT поле_таблицы, ... FROM имя_таблицы ...
+Пример:
+	INSERT INTO Goods (good_id, good_name, type)
+	VALUES (20, 'Table', 2);
+Добавление новой записи с уникальными индексами
+	INSERT INTO Goods SELECT MAX(good_id) + 1, 'Table', 2 FROM Goods;
+
+Обновление данных, оператор UPDATE
+	UPDATE имя_таблицы
+	SET поле_таблицы1 = значение_поля_таблицы1,
+    	поле_таблицыN = значение_поля_таблицыN
+	[WHERE условие_выборки]
+Пример:
+	UPDATE FamilyMembers
+	SET member_name = "Andie Anthony"
+	WHERE member_name = "Andie Quincey";
+Задача 2:
+	UPDATE Rooms 
+	SET price = price + 10
+
+Удаление данных, оператор DELETE
+DELETE FROM имя_таблицы
+[WHERE условие_отбора_записей];
+Общая структура запроса с оператором TRUNCATE
+TRUNCATE TABLE имя_таблицы;
+Задача 3:
+	DELETE Goods
+	FROM Goods 
+	JOIN GoodTypes ON Goods.type = GoodTypes.good_type_id 
+	WHERE GoodTypes.good_type_name = "delicacies"
+
+
+
+---------------------
+МОДУЛЬ 5
+Продвинутый SQL
+Математические функции
+POW(num, power)	Вычисляет число в указанной степени
+SQRT(num)	Вычисляет квадратный корень числа
+LOG(base, num)	Вычисляет логарифм числа по указанному основанию
+EXP(num)	Вычисляет enum
+SIN(num)	Вычисляет синус числа
+COS(num)	Вычисляет косинус числа
+TAN(num)	Вычисляет тангенс числа
+Округление чисел
+Для округления числовых данных в SQL предусмотрены следующие 4 функции: CEIL, FLOOR, ROUND, TRUNCATE.
+CEIL, FLOOR направлены на то, чтобы округлять число к ближайшему целому числу 
+в большую и в меньшую сторону соответственно.
+ROUND Для округления к ближайшему целому числу, и округлять число до некоторой части десятичных знаков после запятой
+Пример: 
+SELECT ROUND(69.7171,1), ROUND(69.7171,2), ROUND(69.7171,3);
+Итог: 
+ROUND(69.7171,1)	ROUND(69.7171,2)	ROUND(69.7171,3)
+69.7	69.72	69.717
+TRUNCATE отбрасывает ненужные цифры.
