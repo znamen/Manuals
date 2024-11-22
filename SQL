@@ -299,3 +299,68 @@ MySQL
 WITH название_cte [(столбец_1 [, столбец_2 ] …)] AS (подзапрос)
     [, название_cte [(столбец_1 [, столбец_2 ] …)] AS (подзапрос)] …
 
+Объединение запросов, оператор Union
+	SELECT поля_таблиц FROM список_таблиц ...
+	UNION [ALL]
+	SELECT поля_таблиц FROM список_таблиц ... ;
+Задание: Выведите полные имена (поля first_name, middle_name и last_name) всех студентов и преподавателей.
+	SELECT DISTINCT first_name, middle_name, last_name FROM Student
+	UNION
+	SELECT DISTINCT first_name, middle_name, last_name FROM Teacher;
+first_name	middle_name	last_name
+Nikolaj	Fedorovich	Sokolov
+Vyacheslav	Evgenevich	Eliseev
+Ivan	Antonovich	Efremov
+
+Условная логика, оператор CASE
+CASE
+    WHEN условие_1 THEN возвращаемое_значение_1
+    WHEN условие_2 THEN возвращаемое_значение_2
+    WHEN условие_n THEN возвращаемое_значение_n
+    [ELSE возвращаемое_значение_по_умолчанию]
+END
+Пример:
+SELECT first_name, last_name, 
+CASE
+  WHEN TIMESTAMPDIFF(YEAR, birthday, NOW()) >= 18 THEN "Совершеннолетний"
+  ELSE "Несовершеннолетний"
+END AS status
+FROM Student
+Вывод:
+first_name	last_name	status
+Nikolaj		Sokolov		Совершеннолетний
+Ivan		Efremov		Совершеннолетний
+Anatolij	ZHdanov		Несовершеннолетний
+Задание: Из таблицы Reviews выведите идентификаторы отзывов (поле id) и их категорию: для рейтинга 4-5 
+проставьте категорию «positive», для 3 проставьте «neutral», а для 1-2 - «negative».
+SELECT id,
+CASE
+  WHEN rating IN (4, 5) THEN 'positive'
+    WHEN rating = 3 THEN 'neutral'
+    WHEN rating IN (1, 2) THEN 'negative'  
+END AS rating
+FROM Reviews
+
+Условная функция IF
+IF(условное_выражение, значение_1, значение_2);
+Пример:
+SELECT id, price,
+    IF(price >= 150, "Комфорт-класс", "Эконом-класс") AS category
+    FROM Rooms
+Вывод:
+id	price	category
+1	149	Эконом-класс
+2	225	Комфорт-класс
+
+Задание: Из таблицы Teacher выведите имена (поле first_name), отчества (поле middle_name) 
+и фамилии (поле last_name) учителей. Если отчество у учителя отсутствует, 
+выведите в поле middle_name значение «Empty».
+	SELECT first_name, middle_name, last_name,
+	IFNULL(middle_name, "Empty") AS middle_name 
+	FROM Teacher
+Вывод:
+first_name	middle_name	last_name
+Sofya		Dmitrievna	Krauze
+Viktoriya	Nikolaevna	Ostrozhskaya
+YUrij		Empty		Krylov
+Bogdan		Romanovich	Moiseev
