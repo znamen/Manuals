@@ -521,3 +521,8 @@ COMMIT;
 ---------------------
 МОДУЛЬ 6
 Базы данных и таблицы
+Создание и удаление баз данных
+	CREATE DATABASE имя_базы_данных;
+	CREATE DATABASE IF NOT EXIST имя_базы_данных;
+	SHOW DATABASES
+	DROP DATABASE имя_базы_данных;
