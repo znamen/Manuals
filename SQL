@@ -155,6 +155,15 @@ SELECT plane, AVG(TIMESTAMPDIFF(SECOND, time_out, time_in)) AS time FROM Trip GR
 select room_id, avg(price) as avg_price, count(room_id) as count from reservations group by room_id
 order by count desc, avg_price desc
 
+Задачка:
+В какие города можно улететь из Парижа (Paris) и сколько времени это займёт?
+	SELECT 
+	    town_to, 
+	    TIME_FORMAT(AVG(TIMEDIFF(CAST(time_in AS TIME), CAST(time_out AS TIME))), '%H:%i:%s') AS flight_time 
+	FROM trip 
+	WHERE town_from = "Paris" 
+	GROUP BY town_to;
+
 ##Оператор HAVING
 Общая структура запроса с оператором HAVING
 
