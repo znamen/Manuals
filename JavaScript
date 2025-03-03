@@ -1,0 +1,110 @@
+//------ОСНОВЫ
+//---Типы данных в JavaScript
+undefined;
+null;
+
+//boolean
+true;
+false;
+
+//String - строка
+'Hello world!'
+"Hi there"
+
+//Number - число
+19
+3.14
+NaN;
+
+//Object - объектный тип
+//объект
+//массив
+//функции
+//ошибка
+
+//---Переменные в языке программирования
+//const or let
+
+const x = 1000*22 + 999-55*5;
+console.log(x);
+
+//если не планируем изменять данные используем:
+//const
+//если будем изменять:
+//let
+let age = 29;
+age = 30;
+
+//еще одна деректива для переменных:
+var z = 10;
+
+const isAdult = true; //camelCase(каждое новое слово в переменной с большойБуквы)
+const _$akjs10
+
+//---Математические операторы
+// -,+,/, %, **
++ '2nsd' //NaN
+//Конкантенация +
+"Hello " + "world" //"Hello world"
+
+2 + "2" //22
+
+//Инкремент, декремент
+// --, ++
+// x++ = (x = x+1)
+//x += 4 === (x = x + 4)
+//x *= 2 === (x = x * 2)
+
+//---Логические выражения
+// >, <, >=, <=, не равно !=, строго не равно !==, равно ли==, строго равно ===
+// || или
+
+console.log('is 5 > 2', 5 > 2);
+console.log('is not equal: 10 and "10"', 10 !== '10');
+
+//--Условный операторы
+let age = 15;
+if (age >=18) {
+	console.log('True age')
+} else {
+	console.log('false age')
+}
+
+let salary = 2000;
+// if (salary > 1500) console.log('I need to improve!')
+
+//задачка
+function yourCodeInside(x) {
+    let isOdd = x % 2 !== 0; 
+    return isOdd;
+}
+
+//Оператор switch
+let status = 'idle';
+switch (status) {
+	case 'idle':
+	console.log('Nothing is happening');
+    break;
+	case 'loading':
+	console.log('Data loading');
+    break;
+	case 'respond':
+	console.log('We have data');
+    break;
+	case 'respond':
+	console.log('Something went wrong');
+    break;
+	default:
+	console.log('Error')
+}
+
+//Тернарный оператор (?)
+const age = 18;
+
+age >= 18 ? console.log('Access granted') : console.log('Access denied');
+//(age (?если) больше или равно 18 то вывести 'Access granted' :(или) 'Access denied')
+
+console.log('Access ', age >= 18 ? 'granted' : 'denied');
+
+let status = 'idle';
+let statusNumber = status === 'idle' ? 0: 1;
