@@ -155,3 +155,52 @@ numbers.push('55');
 console.log(numbers);
 
 //--Циклы
+const numbers = ['1','2','3','33'];
+let index = 0;
+while (index < numbers.length) {
+numbers[index] *=2;
+console.log(numbers[index]);
+index++;//увеличивает индекс(номер числа) на +1
+}
+console.log('Finish')
+
+//Задача с циклами два варианта
+function mainCode(numbers) {
+    let index = 0;
+    let result = [];
+
+    while (index < numbers.length) {
+        let num = Number(numbers[index]);
+        result.push(num % 2 === 0 ? num * 2 : num);
+        index++;
+    }
+    return result;
+}
+
+function mainCode(numbers) {
+    let index = 0;
+
+    while (index < numbers.length) {
+        if (numbers[index] % 2 === 0) {
+            numbers[index] *= 2;
+        }
+        index++;
+    }
+    return numbers;
+}
+
+//--Цикл for
+const numbers = ['1','2','3','4','5'];
+for(let i = 0; i < numbers.length; i++){
+	numbers[i] *=2;
+	console.log(numbers[i]);
+}
+//Задача
+function mainCode(numbers) {
+for(let i = 0; i < numbers.length; i++){
+    if ((i -1) % 2 != 0) {
+            numbers[i] +=3;
+        }
+
+}  return numbers;
+}
