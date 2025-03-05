@@ -204,3 +204,40 @@ for(let i = 0; i < numbers.length; i++){
 
 }  return numbers;
 }
+
+//--Оператор break
+let tries = 0;
+while (tries < 3) {
+	const age = +prompt('Сколько вам лет?');
+	if (age) {
+	alert('welcome');
+	break;
+	}
+	tries++;
+	
+	if (tries === 3) {
+		alert('попитки закончились');
+		break;
+		}
+	alert('Данные введены некорректно.')
+	}
+	alert('End.')
+
+//--Оператор continue; для того чтобы завершить цикл раньше времени
+
+for(let i = 1; i < 10; i++){
+    if (i % 2 === 0) continue;
+	console.log(i);//не будет показываться из за continue
+}  
+console.log('end');
+
+//Задача
+function mainCode(numbers) {
+  const evenNumbers = [];
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 0 && evenNumbers.length < 3) {
+      evenNumbers.push(numbers[i]);
+    }
+  }
+  return evenNumbers;
+}
