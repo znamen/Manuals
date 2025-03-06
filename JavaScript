@@ -241,3 +241,30 @@ function mainCode(numbers) {
   }
   return evenNumbers;
 }
+
+//--Функции
+function sum() {
+	console.log('hello');
+}
+sum(); //вызов функции
+
+function sum(a, b) {
+	return a + b;
+}
+//Пример
+function getNumberData(question) {
+	while(true) {
+		const res = +prompt(question);
+
+		if (res === 0 || res) {
+			return res;
+		}
+	}
+}
+const age = getNumberData('Сколько тебе лет?')
+console.log(age);
+//Задача
+function multiply(a, b, c) {
+     const res = a * b * c;
+    return res;
+}
