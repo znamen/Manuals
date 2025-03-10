@@ -268,3 +268,25 @@ function multiply(a, b, c) {
      const res = a * b * c;
     return res;
 }
+
+//Задача угадай число
+<script>
+        var secretNum = Math.ceil(Math.random() * 10);
+        var tries = 0;
+        function guessNum(num) {
+            if (tries < 6) {
+                if (num === secretNum) {
+                    alert('Вы угадали число!');
+                }
+                else {
+                    tries++;
+                    if (tries < 6 ) {
+                        alert(`У Вас осталось ${6-tries} попыток`);
+                    }
+                    else {
+                        alert('У вас больше нет попыток. Попробуйте в другой раз');
+                    }
+                }
+            }
+        }
+    </script>
