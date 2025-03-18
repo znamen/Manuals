@@ -351,3 +351,35 @@ person.greeting();
 console.log(person.surname)
 person.changeSurname('Fristile');
 console.log(person.surname)
+
+//Встроенные методы чисел
+const num = 19000.1523;
+console.log(num.toFixed(2)) //Округление до двух после запятой
+//Вывод:19000.15
+
+//Задачи
+// 1.
+const correctAnswer = 'JavaScript';
+const userAnswer = ' javaScript! ';
+const isCorrect = userAnswer.toLowerCase().includes(correctAnswer.toLowerCase());
+console.log(isCorrect);
+
+// 2.
+const salary = 15000.2085;
+const salaryFixed = salary.toFixed(2);
+console.log(salaryFixed);
+//методы массивов
+
+//pop, pust добавление удаление элементов
+//shift, unsift с начала или конца
+
+const numbers = [1, 2, 3, 4];
+
+console.log(numbers.includes(4)) //true (проверяет есть ли в массиве 4)
+numbers.indexOf(2) //1
+
+console.log(numbers.slice(0, 2)) // [1, 2] как? !slice(0, 2)! берется с 0(с первого) 2 элемента
+const nums2 = numbers.concat([6, 7, 8])
+console.log(nums2); // 1,2,3,4,5,6,7,8
+console.log(numbers); // 1,2,3,4 (concat прибавит к numbers nums2, не затронув первый)
+console.log(numbers.join(', ')) объединение в строку в данном примере 'с запятой и пробелом'
